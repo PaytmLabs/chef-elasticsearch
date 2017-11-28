@@ -22,4 +22,4 @@ depends 'ark'
 issues_url       'https://github.com/elastic/cookbook-elasticsearch/issues'
 source_url       'https://github.com/elastic/cookbook-elasticsearch'
 
-chef_version '>= 13' if respond_to?(:chef_version)
+chef_version '>= 12.10' if respond_to?(:chef_version)
