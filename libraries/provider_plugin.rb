@@ -1,9 +1,9 @@
 # Chef Provider for installing an elasticsearch plugin
-class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
-  include ElasticsearchCookbook::Helpers
+class Elasticsearch2Cookbook::PluginProvider < Chef::Provider::LWRPBase
+  include Elasticsearch2Cookbook::Helpers
   include Chef::Mixin::ShellOut
 
-  provides :elasticsearch_plugin
+  provides :elasticsearch2_plugin
 
   def whyrun_supported?
     false
@@ -24,9 +24,9 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
   end # action
 
   def manage_plugin(arguments)
-    es_user = find_es_resource(run_context, :elasticsearch_user, new_resource)
-    es_install = find_es_resource(run_context, :elasticsearch_install, new_resource)
-    es_conf = find_es_resource(run_context, :elasticsearch_configure, new_resource)
+    es_user = find_es_resource(run_context, :elasticsearch2_user, new_resource)
+    es_install = find_es_resource(run_context, :elasticsearch2_install, new_resource)
+    es_conf = find_es_resource(run_context, :elasticsearch2_configure, new_resource)
 
     assert_state_is_valid(es_user, es_install, es_conf)
 
@@ -41,8 +41,8 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
   end
 
   def plugin_exists(name)
-    es_install = find_es_resource(run_context, :elasticsearch_install, new_resource)
-    es_conf = find_es_resource(run_context, :elasticsearch_configure, new_resource)
+    es_install = find_es_resource(run_context, :elasticsearch2_install, new_resource)
+    es_conf = find_es_resource(run_context, :elasticsearch2_configure, new_resource)
     path = es_conf.path_plugins[es_install.type]
 
     Dir.entries(path).any? do |plugin|
@@ -63,18 +63,18 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
     end
 
     unless es_conf.path_plugins[es_install.type] # we do not check existence (may not exist if no plugins installed)
-      raise "Could not determine the plugin directory (#{es_conf.path_plugins[es_install.type]}). Please check elasticsearch_configure[#{es_conf.name}]."
+      raise "Could not determine the plugin directory (#{es_conf.path_plugins[es_install.type]}). Please check elasticsearch2_configure[#{es_conf.name}]."
     end
 
     unless es_conf.path_bin[es_install.type] && ::File.exist?(es_conf.path_bin[es_install.type])
-      raise "Could not determine the binary directory (#{es_conf.path_bin[es_install.type]}). Please check elasticsearch_configure[#{es_conf.name}]."
+      raise "Could not determine the binary directory (#{es_conf.path_bin[es_install.type]}). Please check elasticsearch2_configure[#{es_conf.name}]."
     end
 
     true
   end
 
   def shell_out_as_user!(command, run_ctx)
-    es_install = find_es_resource(run_ctx, :elasticsearch_install, new_resource)
+    es_install = find_es_resource(run_ctx, :elasticsearch2_install, new_resource)
 
     # See this link for an explanation:
     # https://www.elastic.co/guide/en/elasticsearch/plugins/2.1/plugin-management.html
@@ -83,7 +83,7 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
       shell_out!(command)
     else
       # non-package installations should install plugins as the ES user
-      es_user = find_es_resource(run_ctx, :elasticsearch_user, new_resource)
+      es_user = find_es_resource(run_ctx, :elasticsearch2_user, new_resource)
       shell_out!(command, user: es_user.username, group: es_user.groupname)
     end
   end

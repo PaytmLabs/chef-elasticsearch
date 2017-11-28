@@ -1,7 +1,7 @@
 # Chef Provider for configuring an elasticsearch service in the init system
-class ElasticsearchCookbook::ServiceProvider < Chef::Provider::LWRPBase
-  provides :elasticsearch_service
-  include ElasticsearchCookbook::Helpers
+class Elasticsearch2Cookbook::ServiceProvider < Chef::Provider::LWRPBase
+  provides :elasticsearch2_service
+  include Elasticsearch2Cookbook::Helpers
 
   def whyrun_supported?
     false
@@ -12,9 +12,9 @@ class ElasticsearchCookbook::ServiceProvider < Chef::Provider::LWRPBase
   end
 
   action :configure do
-    es_user = find_es_resource(run_context, :elasticsearch_user, new_resource)
-    es_install = find_es_resource(run_context, :elasticsearch_install, new_resource)
-    es_conf = find_es_resource(run_context, :elasticsearch_configure, new_resource)
+    es_user = find_es_resource(run_context, :elasticsearch2_user, new_resource)
+    es_install = find_es_resource(run_context, :elasticsearch2_install, new_resource)
+    es_conf = find_es_resource(run_context, :elasticsearch2_configure, new_resource)
 
     d_r = directory es_conf.path_pid[es_install.type] do
       owner es_user.username

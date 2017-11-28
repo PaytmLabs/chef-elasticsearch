@@ -1,7 +1,7 @@
 # Chef Resource for configuring an Elasticsearch node
-class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
-  resource_name :elasticsearch_configure
-  provides :elasticsearch_configure
+class Elasticsearch2Cookbook::ConfigureResource < Chef::Resource::LWRPBase
+  resource_name :elasticsearch2_configure
+  provides :elasticsearch2_configure
 
   actions(:manage, :remove)
   default_action :manage
@@ -40,13 +40,13 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
   }.freeze)
 
   attribute(:template_elasticsearch_env, kind_of: String, default: 'elasticsearch.in.sh.erb')
-  attribute(:cookbook_elasticsearch_env, kind_of: String, default: 'elasticsearch')
+  attribute(:cookbook_elasticsearch_env, kind_of: String, default: 'elasticsearch2')
 
   attribute(:template_elasticsearch_yml, kind_of: String, default: 'elasticsearch.yml.erb')
-  attribute(:cookbook_elasticsearch_yml, kind_of: String, default: 'elasticsearch')
+  attribute(:cookbook_elasticsearch_yml, kind_of: String, default: 'elasticsearch2')
 
   attribute(:template_logging_yml, kind_of: String, default: 'logging.yml.erb')
-  attribute(:cookbook_logging_yml, kind_of: String, default: 'elasticsearch')
+  attribute(:cookbook_logging_yml, kind_of: String, default: 'elasticsearch2')
 
   attribute(:logging, kind_of: Hash, default: {}.freeze)
 

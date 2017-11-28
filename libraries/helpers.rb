@@ -1,4 +1,4 @@
-module ElasticsearchCookbook
+module Elasticsearch2Cookbook
   # Helper methods included by various providers and passed to the template engine
   module Helpers
     def find_es_resource(run_context, resource_type, resource)
@@ -64,20 +64,20 @@ module ElasticsearchCookbook
     def determine_version(new_resource, node)
       if new_resource.version
         new_resource.version.to_s
-      elsif node['elasticsearch'] && node['elasticsearch']['version']
-        node['elasticsearch']['version'].to_s
+      elsif node['elasticsearch2'] && node['elasticsearch2']['version']
+        node['elasticsearch2']['version'].to_s
       else
-        raise 'could not determine version of elasticsearch to install'
+        raise 'could not determine version of elasticsearch2 to install'
       end
     end
 
     def determine_install_type(new_resource, node)
       if new_resource.type
         new_resource.type.to_s
-      elsif node['elasticsearch'] && node['elasticsearch']['install_type']
-        node['elasticsearch']['install_type'].to_s
+      elsif node['elasticsearch2'] && node['elasticsearch2']['install_type']
+        node['elasticsearch2']['install_type'].to_s
       else
-        raise 'could not determine how to install elasticsearch (package? tarball?)'
+        raise 'could not determine how to install elasticsearch2 (package? tarball?)'
       end
     end
 
@@ -94,9 +94,9 @@ module ElasticsearchCookbook
       if new_resource.download_url
         url_string = new_resource.download_url
       elsif install_type.to_s == 'tar' || install_type.to_s == 'tarball'
-        url_string = node['elasticsearch'][url_hash_key]['tar']
-      elsif install_type.to_s == 'package' && node['elasticsearch'][url_hash_key][platform_family]
-        url_string = node['elasticsearch'][url_hash_key][platform_family]
+        url_string = node['elasticsearch2'][url_hash_key]['tar']
+      elsif install_type.to_s == 'package' && node['elasticsearch2'][url_hash_key][platform_family]
+        url_string = node['elasticsearch2'][url_hash_key][platform_family]
       end
 
       if url_string && version
@@ -116,16 +116,16 @@ module ElasticsearchCookbook
         new_resource.download_checksum
       elsif install_type.to_s == 'tar' || install_type.to_s == 'tarball'
         node && version &&
-          node['elasticsearch'] &&
-          node['elasticsearch']['checksums'] &&
-          node['elasticsearch']['checksums'][version] &&
-          node['elasticsearch']['checksums'][version]['tar']
-      elsif install_type.to_s == 'package' && node['elasticsearch']['checksums'][version] && node['elasticsearch']['checksums'][version][platform_family]
+          node['elasticsearch2'] &&
+          node['elasticsearch2']['checksums'] &&
+          node['elasticsearch2']['checksums'][version] &&
+          node['elasticsearch2']['checksums'][version]['tar']
+      elsif install_type.to_s == 'package' && node['elasticsearch2']['checksums'][version] && node['elasticsearch2']['checksums'][version][platform_family]
         node && version && platform_family &&
-          node['elasticsearch'] &&
-          node['elasticsearch']['checksums'] &&
-          node['elasticsearch']['checksums'][version] &&
-          node['elasticsearch']['checksums'][version][platform_family]
+          node['elasticsearch2'] &&
+          node['elasticsearch2']['checksums'] &&
+          node['elasticsearch2']['checksums'][version] &&
+          node['elasticsearch2']['checksums'][version][platform_family]
       end
     end
 

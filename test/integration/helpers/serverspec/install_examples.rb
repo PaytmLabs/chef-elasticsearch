@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-shared_examples_for 'elasticsearch install' do |args = {}|
+shared_examples_for 'elasticsearch2 install' do |args = {}|
   dir = args[:dir] || (package? ? '/usr/share/elasticsearch' : '/usr/local')
   version = args[:version] || '2.4.4'
 

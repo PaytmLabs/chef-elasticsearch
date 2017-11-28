@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-shared_examples_for 'elasticsearch configure' do |args = {}|
+shared_examples_for 'elasticsearch2 configure' do |args = {}|
   dir = args[:dir] || (package? ? '/usr/share/elasticsearch' : '/usr/local')
   path_conf = args[:path_conf] || (package? ? '/etc/elasticsearch' : "#{dir}/etc/elasticsearch")
   path_data = args[:path_data] || (package? ? '/var/lib/elasticsearch' : "#{dir}/var/data/elasticsearch")

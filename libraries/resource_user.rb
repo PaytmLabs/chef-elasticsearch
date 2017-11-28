@@ -1,7 +1,7 @@
 # Chef Resource for declaring a user and group for Elasticsearch
-class ElasticsearchCookbook::UserResource < Chef::Resource::LWRPBase
-  resource_name :elasticsearch_user
-  provides :elasticsearch_user
+class Elasticsearch2Cookbook::UserResource < Chef::Resource::LWRPBase
+  resource_name :elasticsearch2_user
+  provides :elasticsearch2_user
 
   actions(:create, :remove)
   default_action :create

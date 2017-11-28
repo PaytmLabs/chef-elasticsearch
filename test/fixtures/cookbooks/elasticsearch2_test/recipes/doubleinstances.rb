@@ -1,20 +1,20 @@
 #
-# Cookbook Name:: elasticsearch_test
+# Cookbook Name:: elasticsearch2_test
 # Recipe:: doubleinstances
 #
 # Example of creating two ES instances on a single server
 
-elasticsearch_user 'elasticsearch'
+elasticsearch2_user 'elasticsearch'
 
 # for package install, share the various paths across instances
-elasticsearch_install 'elasticsearch' do
+elasticsearch2_install 'elasticsearch' do
   type :package
 end
 
-elasticsearch_plugin 'elasticsearch_head' do
+elasticsearch2_plugin 'elasticsearch_head' do
   instance_name 'alpha'
   url 'mobz/elasticsearch-head'
-  # notifies :restart, "elasticsearch_service[elasticsearch]", :delayed
+  # notifies :restart, "elasticsearch2_service[elasticsearch]", :delayed
   not_if { ::File.exist?('/usr/share/elasticsearch/plugins/head') }
 end
 
@@ -32,7 +32,7 @@ settings = {
 }
 
 %w(alpha beta).each do |instance_name|
-  elasticsearch_configure "elasticsearch_#{instance_name}" do
+  elasticsearch2_configure "elasticsearch_#{instance_name}" do
     instance_name instance_name
     path_home package:    '/usr/share/elasticsearch'
     path_conf package:    "/etc/elasticsearch-#{instance_name}"
@@ -52,7 +52,7 @@ settings = {
     )
   end
 
-  elasticsearch_service "elasticsearch_#{instance_name}" do
+  elasticsearch2_service "elasticsearch_#{instance_name}" do
     instance_name instance_name
     service_actions [:enable, :start]
   end

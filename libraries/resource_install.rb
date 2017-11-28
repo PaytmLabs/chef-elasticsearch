@@ -1,7 +1,7 @@
 # Chef Resource for installing or removing Elasticsearch from package or source
-class ElasticsearchCookbook::InstallResource < Chef::Resource::LWRPBase
-  resource_name :elasticsearch_install
-  provides :elasticsearch_install
+class Elasticsearch2Cookbook::InstallResource < Chef::Resource::LWRPBase
+  resource_name :elasticsearch2_install
+  provides :elasticsearch2_install
 
   actions(:install, :remove)
   default_action :install

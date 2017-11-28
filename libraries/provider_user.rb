@@ -1,8 +1,8 @@
 # Chef Provider for creating a user and group for Elasticsearch
-class ElasticsearchCookbook::UserProvider < Chef::Provider::LWRPBase
-  include ElasticsearchCookbook::Helpers
+class Elasticsearch2Cookbook::UserProvider < Chef::Provider::LWRPBase
+  include Elasticsearch2Cookbook::Helpers
 
-  provides :elasticsearch_user
+  provides :elasticsearch2_user
 
   def whyrun_supported?
     false

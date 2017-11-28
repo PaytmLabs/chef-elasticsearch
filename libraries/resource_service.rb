@@ -1,7 +1,7 @@
 # Chef Resource for declaring a service for Elasticsearch
-class ElasticsearchCookbook::ServiceResource < Chef::Resource::LWRPBase
-  resource_name :elasticsearch_service
-  provides :elasticsearch_service
+class Elasticsearch2Cookbook::ServiceResource < Chef::Resource::LWRPBase
+  resource_name :elasticsearch2_service
+  provides :elasticsearch2_service
 
   actions(
     :configure, :remove, # our custom actions
@@ -20,5 +20,5 @@ class ElasticsearchCookbook::ServiceResource < Chef::Resource::LWRPBase
 
   # allow overridable init script
   attribute(:init_source, kind_of: String, default: 'initscript.erb')
-  attribute(:init_cookbook, kind_of: String, default: 'elasticsearch')
+  attribute(:init_cookbook, kind_of: String, default: 'elasticsearch2')
 end

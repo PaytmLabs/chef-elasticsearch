@@ -5,7 +5,7 @@
   "automatic": {
     "hostname": "vagrant.vm",
     "recipes": [
-      "elasticsearch::default"
+      "elasticsearch2::default"
     ],
     "roles": [
     ],
@@ -22,6 +22,6 @@
   "override": {
   },
   "run_list": [
-    "recipe[elasticsearch::default]"
+    "recipe[elasticsearch2::default]"
   ]
 }

@@ -1,8 +1,8 @@
-# Chef Provider for configuring an elasticsearch instance
-class ElasticsearchCookbook::ConfigureProvider < Chef::Provider::LWRPBase
-  include ElasticsearchCookbook::Helpers
+# Chef Provider for configuring an elasticsearch2 instance
+class Elasticsearch2Cookbook::ConfigureProvider < Chef::Provider::LWRPBase
+  include Elasticsearch2Cookbook::Helpers
 
-  provides :elasticsearch_configure
+  provides :elasticsearch2_configure
 
   def whyrun_supported?
     false
@@ -10,9 +10,9 @@ class ElasticsearchCookbook::ConfigureProvider < Chef::Provider::LWRPBase
 
   action :manage do
     # lookup existing ES resources
-    es_user = find_es_resource(run_context, :elasticsearch_user, new_resource)
-    es_install = find_es_resource(run_context, :elasticsearch_install, new_resource)
-    es_svc = find_es_resource(run_context, :elasticsearch_service, new_resource)
+    es_user = find_es_resource(run_context, :elasticsearch2_user, new_resource)
+    es_install = find_es_resource(run_context, :elasticsearch2_install, new_resource)
+    es_svc = find_es_resource(run_context, :elasticsearch2_service, new_resource)
 
     default_configuration = new_resource.default_configuration.dup
     # if a subdir parameter is missing but dir is set, infer the subdir name
@@ -142,7 +142,7 @@ class ElasticsearchCookbook::ConfigureProvider < Chef::Provider::LWRPBase
       owner es_user.username
       group es_user.groupname
       mode 0600
-      helpers(ElasticsearchCookbook::Helpers)
+      helpers(Elasticsearch2Cookbook::Helpers)
       variables(config: merged_configuration)
       action :nothing
     end

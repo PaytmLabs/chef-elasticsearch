@@ -1,10 +1,10 @@
 
 # Chef Provider for installing or removing Elasticsearch from package or tarball
 # downloaded from elasticsearch.org and installed by package manager or ark resource
-class ElasticsearchCookbook::InstallProvider < Chef::Provider::LWRPBase
-  include ElasticsearchCookbook::Helpers
+class Elasticsearch2Cookbook::InstallProvider < Chef::Provider::LWRPBase
+  include Elasticsearch2Cookbook::Helpers
   include Chef::DSL::IncludeRecipe
-  provides :elasticsearch_install
+  provides :elasticsearch2_install
 
   def whyrun_supported?
     false
@@ -95,7 +95,7 @@ class ElasticsearchCookbook::InstallProvider < Chef::Provider::LWRPBase
   def install_tarball_wrapper_action
     include_recipe 'ark'
 
-    es_user = find_es_resource(run_context, :elasticsearch_user, new_resource)
+    es_user = find_es_resource(run_context, :elasticsearch2_user, new_resource)
 
     ark_r = ark 'elasticsearch' do
       url   determine_download_url(new_resource, node)

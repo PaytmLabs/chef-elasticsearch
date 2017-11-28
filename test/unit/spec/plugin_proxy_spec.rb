@@ -3,7 +3,7 @@
 require_relative 'spec_helper'
 require_relative '../../../libraries/helpers.rb'
 
-describe 'elasticsearch_test::default_with_plugins' do
+describe 'elasticsearch2_test::default_with_plugins' do
   before { stub_resources }
   supported_platforms.each do |platform, versions|
     versions.each do |version|
@@ -24,30 +24,30 @@ describe 'elasticsearch_test::default_with_plugins' do
           Chef::Config['https_proxy'] = nil
         end
 
-        it 'installs elasticsearch without proxy' do
+        it 'installs elasticsearch2 without proxy' do
           args = get_java_proxy_arguments
           expect(args).to eq('')
         end
 
-        it 'installs elasticsearch with proxy host' do
+        it 'installs elasticsearch2 with proxy host' do
           Chef::Config['http_proxy'] = 'http://example.com'
           args = get_java_proxy_arguments
           expect(args).to eq('-DproxyHost=example.com -DproxyPort=80')
         end
 
-        it 'installs elasticsearch with proxy' do
+        it 'installs elasticsearch2 with proxy' do
           Chef::Config['http_proxy'] = 'http://example.com:8080'
           args = get_java_proxy_arguments
           expect(args).to eq('-DproxyHost=example.com -DproxyPort=8080')
         end
 
-        it 'installs elasticsearch with proxy host (ssl)' do
+        it 'installs elasticsearch2 with proxy host (ssl)' do
           Chef::Config['https_proxy'] = 'https://example.com'
           args = get_java_proxy_arguments
           expect(args).to eq('-DproxyHost=example.com -DproxyPort=443')
         end
 
-        it 'installs elasticsearch with proxy (ssl)' do
+        it 'installs elasticsearch2 with proxy (ssl)' do
           Chef::Config['https_proxy'] = 'https://example.com:8080'
           args = get_java_proxy_arguments
           expect(args).to eq('-DproxyHost=example.com -DproxyPort=8080')

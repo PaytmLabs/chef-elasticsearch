@@ -1,8 +1,8 @@
-# this is a test fixture used to test that the elasticsearch cookbook's
+# this is a test fixture used to test that the elasticsearch2 cookbook's
 # resources, providers, and recipes can be used correctly from a wrapper
 
 # create user with all non-default overriden options
-elasticsearch_user 'foobar' do
+elasticsearch2_user 'foobar' do
   groupname 'bar'
   username 'foo'
   uid 1111
@@ -12,12 +12,12 @@ elasticsearch_user 'foobar' do
 end
 
 # we're going to test both types on a single system!
-elasticsearch_install 'elasticsearch_p' do
+elasticsearch2_install 'elasticsearch_p' do
   type :package
   instance_name 'special_package_instance'
 end
 
-elasticsearch_configure 'my_elasticsearch' do
+elasticsearch2_configure 'my_elasticsearch' do
   logging(action: 'INFO')
 
   allocated_memory '123m'
@@ -39,12 +39,12 @@ elasticsearch_configure 'my_elasticsearch' do
   instance_name 'special_package_instance'
 end
 
-elasticsearch_plugin 'head' do
+elasticsearch2_plugin 'head' do
   instance_name 'special_package_instance'
   url 'mobz/elasticsearch-head'
 end
 
-elasticsearch_service 'elasticsearch-crazy' do
+elasticsearch2_service 'elasticsearch-crazy' do
   instance_name 'special_package_instance'
   service_actions [:enable, :start]
 end

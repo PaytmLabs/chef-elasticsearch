@@ -1,9 +1,9 @@
 # Chef Resource for installing an elasticsearch plugin
-class ElasticsearchCookbook::PluginResource < Chef::Resource::LWRPBase
-  resource_name :elasticsearch_plugin
-  provides :elasticsearch_plugin
+class Elasticsearch2Cookbook::PluginResource < Chef::Resource::LWRPBase
+  resource_name :elasticsearch2_plugin
+  provides :elasticsearch2_plugin
 
-  include ElasticsearchCookbook::Helpers
+  include Elasticsearch2Cookbook::Helpers
 
   actions(:install, :remove)
   default_action :install

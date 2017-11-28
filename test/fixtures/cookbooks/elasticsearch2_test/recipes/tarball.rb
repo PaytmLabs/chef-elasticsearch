@@ -2,7 +2,7 @@
 # resources, providers, and recipes can be used correctly from a wrapper
 
 # create user with all non-default overriden options
-elasticsearch_user 'foobar' do
+elasticsearch2_user 'foobar' do
   username 'foo'
   groupname 'bar'
   uid 1111
@@ -11,13 +11,13 @@ elasticsearch_user 'foobar' do
   instance_name 'special_tarball_instance'
 end
 
-elasticsearch_install 'elasticsearch_s' do
+elasticsearch2_install 'elasticsearch_s' do
   type :tarball
   dir tarball: '/usr/local/awesome'
   instance_name 'special_tarball_instance'
 end
 
-elasticsearch_configure 'my_elasticsearch' do
+elasticsearch2_configure 'my_elasticsearch' do
   path_home     tarball: '/usr/local/awesome/elasticsearch'
   path_conf     tarball: '/usr/local/awesome/etc/elasticsearch'
   path_data     tarball: '/usr/local/awesome/var/data/elasticsearch'
@@ -46,12 +46,12 @@ elasticsearch_configure 'my_elasticsearch' do
   instance_name 'special_tarball_instance'
 end
 
-elasticsearch_plugin 'head' do
+elasticsearch2_plugin 'head' do
   url 'mobz/elasticsearch-head'
   instance_name 'special_tarball_instance'
 end
 
-elasticsearch_service 'elasticsearch-crazy' do
+elasticsearch2_service 'elasticsearch-crazy' do
   # path_conf '/usr/local/awesome/etc/elasticsearch'
   # path_pid '/usr/local/awesome/var/run'
   instance_name 'special_tarball_instance'

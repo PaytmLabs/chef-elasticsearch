@@ -1,6 +1,6 @@
 # Encoding: utf-8
 #
-# Cookbook Name:: elasticsearch_test
+# Cookbook Name:: elasticsearch2_test
 # Recipe:: default_with_plugins
 #
 # This cookbook is designed to be just elasticsearch::default plus installing
@@ -13,30 +13,30 @@
 include_recipe 'chef-sugar'
 
 # see README.md and test/fixtures/cookbooks for more examples!
-elasticsearch_user 'elasticsearch'
-elasticsearch_install 'elasticsearch' do
-  type node['elasticsearch']['install_type'].to_sym # since TK can't symbol.
+elasticsearch2_user 'elasticsearch'
+elasticsearch2_install 'elasticsearch' do
+  type node['elasticsearch2']['install_type'].to_sym # since TK can't symbol.
 end
-elasticsearch_configure 'elasticsearch'
-elasticsearch_service 'elasticsearch' do
+elasticsearch2_configure 'elasticsearch'
+elasticsearch2_service 'elasticsearch' do
   service_actions [:enable, :start]
 end
 
 # by default, no plugins, but we do one here.
-elasticsearch_plugin 'head' do
+elasticsearch2_plugin 'head' do
   url 'mobz/elasticsearch-head'
-  notifies :restart, 'elasticsearch_service[elasticsearch]', :delayed
+  notifies :restart, 'elasticsearch2_service[elasticsearch]', :delayed
 end
 
 # remove an installed plugin
-elasticsearch_plugin 'kopf' do
+elasticsearch2_plugin 'kopf' do
   url 'lmenezes/elasticsearch-kopf'
   action [:install, :remove]
-  notifies :restart, 'elasticsearch_service[elasticsearch]', :delayed
+  notifies :restart, 'elasticsearch2_service[elasticsearch]', :delayed
 end
 
 # remove a non-existent plugin
-elasticsearch_plugin 'pleasedontexist' do
+elasticsearch2_plugin 'pleasedontexist' do
   action :remove
-  notifies :restart, 'elasticsearch_service[elasticsearch]', :delayed
+  notifies :restart, 'elasticsearch2_service[elasticsearch]', :delayed
 end

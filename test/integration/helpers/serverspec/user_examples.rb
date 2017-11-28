@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-shared_examples_for 'elasticsearch user' do |args = {}|
+shared_examples_for 'elasticsearch2 user' do |args = {}|
   expected_user = args[:user] || 'elasticsearch'
   expected_group = args[:group] || expected_user || 'elasticsearch'
   # expected_home = args[:home] || (package? ? "/usr/share/#{expected_user}" : "/usr/local/#{expected_user}")
