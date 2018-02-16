@@ -94,7 +94,8 @@ class Elasticsearch2Cookbook::ConfigureProvider < Chef::Provider::LWRPBase
     params[:ES_JAVA_OPTS] << "-Xss#{new_resource.thread_stack_size} "
     params[:ES_JAVA_OPTS] << "#{new_resource.gc_settings.tr("\n", ' ').strip.squeeze(' ')} " if new_resource.gc_settings
     params[:ES_JAVA_OPTS] << '-Dfile.encoding=UTF-8 '
-    params[:ES_JAVA_OPTS] << '-Djna.nosys=true'
+    params[:ES_JAVA_OPTS] << '-Djna.nosys=true '
+    params[:ES_JAVA_OPTS] << '-Dmapper.allow_dots_in_name=true '
     params[:ES_JAVA_OPTS] << " #{new_resource.env_options}" if new_resource.env_options
     params[:ES_JAVA_OPTS] << '"'
 
